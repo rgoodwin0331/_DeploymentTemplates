@@ -31,6 +31,16 @@ param vnetName string
 @description('Subnet Name')
 param subnetName string
 
+@description('Deployed By Engineer')
+param deployedby string
+
+@description('Initial Deployment Date')
+param deployeddate string = utcNow('d')
+
+param thriveTags object = {
+  deployedby: deployedby
+  deployeddate: deployeddate
+}
 
 
 
@@ -79,6 +89,10 @@ resource nic 'Microsoft.Network/networkInterfaces@2021-02-01' = {
 resource vm 'Microsoft.Compute/virtualMachines@2021-03-01' = {
   name: vmName
   location: location
+  tags: {
+    createdby: toLower(thriveTags.deployedby)
+    createdon: toLower(thriveTags.deployedon) 
+  }
   properties: {
     hardwareProfile: {
       vmSize: vmSize
