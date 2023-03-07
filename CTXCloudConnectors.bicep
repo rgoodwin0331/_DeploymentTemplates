@@ -12,11 +12,8 @@ param count int = 2
 
 @description('The Windows version for the VM. This will pick a fully patched image of this given Windows version.')
 @allowed([
-'2019-Datacenter'
 '2019-datacenter-gensecond'
-'2019-datacenter-gs'
 '2022-datacenter'
-'2022-datacenter-core-g2'
 ])
 param OSVersion string = '2019-datacenter-gensecond'
 
